@@ -189,6 +189,148 @@ displayValue.addEventListener("click", (e)=> {
     }
   })
   
+
+  export function calculateExpression(inputStr){   
+    try {
+      let result;
+      let newstr = inputStr.replace('^','**');
+      newstr = inputStr.replace("x", "*")
+      //replace string for absolute value
+      let regexmodulus=/\|(.+)\|/g;
+      newstr=newstr.replace(regexmodulus,(match,num)=>{
+        console.log(num);             
+        let cal=eval(num);
+             if(cal<0){
+             cal=-cal;
+            }
+       // console.log(cal);
+                                          
+        return cal;
+   });
+
+      console.log(newstr);
+      
+      result = eval(newstr);
+      result = result.toFixed(2);
+      
+
+      addToHistory(`${newstr} = ${result}`);
+      inputStr = result;
+      displayStr = result;
+      updateDisplay()
+      
+      return result;
+      
+    }
+    catch(error) {
+      // calcInput.textContent = "Error"
+      alert("Invalid Expression !")
+      // displayStr = "0";
+      calcInput.textContent = "0"
+      displayStr = ""
+      let newstr = ""
+      return newstr;
+    }
+ 
+}
+
+
+// calculate Multiplication 
+function calcMultiplication() {
+displayStr += "x";
+inputStr += "*"
+calcInput.textContent += "x"
+}
+
+//calculate square of number
+function calcSquare() {
+if(!is2nd) {
+  displayStr += "^3";
+  inputStr += "**3"
+}
+else {
+  displayStr += "^2";
+  inputStr += "^2"
+}
+calcInput.textContent = displayStr;
+// calcInput.scrollTo(calcInput.offsetWidth, 0);
+}
+
+//calculate inverse of number
+function calcInverse() {
+if(inputStr != "0") {
+  inputStr = "1/";
+  displayStr = "1/"
+  calcInput.textContent = displayStr;
+  calcInput.scrollTo(calcInput.offsetWidth, 0);
+}
+}
+
+//calculate power of number
+function calcPower() {
+displayStr += "^";
+calcInput.textContent = displayStr;
+inputStr += "^"
+calcInput.scrollTo(calcInput.offsetWidth, 0);
+}
+
+//calculate square root of number
+function calcSquareRoot() {
+if(!is2nd) {
+  displayStr += "√("
+  inputStr += "Math.cbrt("
+} else {
+   displayStr += "√("
+   inputStr += "Math.sqrt("
+}
+calcInput.textContent = displayStr;
+calcInput.scrollTo(calcInput.offsetWidth, 0);
+}
+
+//calclate logaritham
+function calcLogaritham() {
+displayStr += "log("
+inputStr += "Math.log10("
+calcInput.textContent = displayStr;
+}
+
+//calculate Ln for number
+function calcLn() {
+displayStr += "ln(";
+inputStr += "Math.log(";
+calcInput.textContent = displayStr;
+}
+
+//calclate exponenet of number 
+function calcExponent() {
+displayStr += "e";
+  if(!inputStr) {
+  inputStr += "Math.E";
+  } else {
+    inputStr+= "*Math.E";
+  }
+calcInput.textContent = displayStr
+}
+
+//toogle sign for output or input between + or -
+function toogleSign() {
+let strMatch = inputStr.match(/(-?\d+(\.\d+)?)$/);
+if(strMatch) {
+ console.log("matched !");
+ let num = Number(strMatch[1]);
+ let toggle = num * -1;
+ inputStr = inputStr.replace(/(-?\d+(\.\d+)?)$/, `${toggle}`);
+ displayStr = inputStr;
+ calcInput.textContent = displayStr; 
+}
+}
+
+// deg to rad toogle function
+function degToRad() {
+degTorad.textContent = isRad ? "RAD" : "DEG"
+isRad = !isRad;
+}
+
 // dropdown functionality
 document
   .querySelector("#trigonometry-dropdown")
