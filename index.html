@@ -8,86 +8,124 @@
 </head>
 <body>
     <div class="container">
+      <!-- <button id="history" value="history">History</button> -->
+       <button id = "show-history">History</button>
+       <div class="hist-div">
+        <div id = "history">
+          <h2></h2>
+          <ul id="historyList">
+          </ul>
+         </div>
+       </div>
         <div class="calculator">
-            <div class="calculator__display">
-                0
-            </div>
+          <div class="calc-input-scroll">
+            <div class="calculator__display" id="display">
+              0
+          </div>
+          </div>
+           
             
-            <div class="calculator__input-area">
+            <div class="calculator__input-area" id="calculator-input">
                 <div class="row-1" id="col-deg-opt" >
-                    <button class="adv-btn-style">DEG</button>
-                    <button class="adv-btn-style">F-E</button>
+                    <button class="adv-btn-style" id="deg-btn" value="DEG">DEG</button>
+                    <button class="adv-btn-style" value="F-E">F-E</button>
+                    
                 </div>
                  <div class="row-2" id="col-adv-opt">
-                    <button class="col" id="col-mc-style">MC</button>
-                    <button class="col" id="col-mr-style">MR</button>
-                    <button class="col">M+</button>
-                    <button class="col">M-</button>
-                    <button class="col">MS</button>
+                    <button class="col" id="col-mc-style" value="MC" disabled>MC</button>
+                    <button class="col" id="col-mr-style" value="MR" disabled>MR</button>
+                    <button class="col" value="M+">M+</button>
+                    <button class="col" value="M-">M-</button>
+                    <button class="col" value="MS">MS</button>
                 </div>
-                <div class="row-advance-fun" >
-                    <button class="adv-btn-style">
-                        <img src="svgs/trigno.svg" alt="trignometry symbol" height="20px" width="20px">
-                        <span>Trignometry</span>
-                        <img src="svgs/arrow.svg" alt="trignometry symbol" height="20px" width="20px">
-                    </button>
-                    <button class="adv-btn-style">
-                        <img src="svgs/function.svg" alt="trignometry symbol" height="20px" width="20px">
-                        <span>Function</span>
-                        <img src="svgs/arrow.svg" alt="trignometry symbol" height="20px" width="20px">
-                    </button>
+
+                <div class="advance-functions">
+                    <div class="dropdown">
+                      <button class="dropbtn" id="trigonometry-dropdown">
+                        <img
+                          aria-hidden="true"
+                          src="svgs/trigno.svg"
+                          alt="triangle"
+                        />
+                        Trigonometry
+                        <img src="svgs/arrow.svg" alt="More" aria-hidden="true" />
+                      </button>
+                      <div id="trigonometryDropdown" class="dropdown-content">
+                        <button value="sin">sin(x)</button>
+                        <button value="cos">cos(x)</button>
+                        <button value="tan">tan(x)</button>
+                      </div>
+                    </div>
+                    <div class="functions-dropdown">
+                      <button class="functionDropbtn" id="functional-dropdown">
+                        <img
+                          aria-hidden="true"
+                          src="svgs/function.svg"
+                          alt="functions icon"
+                        />
+                        Function
+                        <img src="svgs/arrow.svg" alt="More" aria-hidden="true" />
+                      </button>
+                      <div id="functionDropdown" class="function-dropdown-content">
+                        <button value="floor">floor(x)</button>
+                        <button value="ceil">ceil(x)</button>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="row">
+                    <button class="col" id="2ndfun" value="2nd">2 <sup>nd</sup></button>
+                    <button class="col"value="3.14">π</button>
+                    <button class="col" value="e">e</button>
+                    <button class="col" value="C">C</button>
+                    <button class="col" value="backspace"><img src="svgs/cross.svg" alt="cross"></button>
                 </div>
                 <div class="row">
-                    <button class="col">2 <sup>nd</sup></button>
-                    <button class="col">π</button>
-                    <button class="col">e</button>
-                    <button class="col">C</button>
-                    <button class="col"><img src="svgs/cross.svg" alt="cross"></button>
+                    <button class="col" id="square" value="square">x<sup>2</sup></button>
+                    <button class="col" value="1/">1/x</button>
+                    <button class="col" value="absolute-value">|x|</button>
+                    <button class="col" value="exp">exp</button>
+                    <button class="col" value="%">mod</button>
                 </div>
                 <div class="row">
-                    <button class="col">x<sup>2</sup></button>
-                    <button class="col">1/x</button>
-                    <button class="col">|x|</button>
-                    <button class="col">exp</button>
-                    <button class="col">mod</button>
-                </div>
-                <div class="row">
-                    <button class="col">2x</button>
-                    <button class="col">(</button>
-                    <button class="col">)</button>
-                    <button class="col">n!</button>
+                    <button class="col" id="squareRoot" value="squareRoot"><sup>2</sup>&Sqrt;x</button>
+                    <button class="col" value="(">(</button>
+                    <button class="col" value=")">)</button>
+                    <button class="col" value="factorial">n!</button>
                     <button class="col" value="/">÷</button>
                 </div>
                 <div class="row">
-                    <button class="col">x<sup>y</sup></button>
-                    <button class="col" id="col-num-style">7</button>
-                    <button class="col" id="col-num-style">8</button>
-                    <button class="col" id="col-num-style">9</button>
+                    <button class="col" value="power">x<sup>y</sup></button>
+                    <button class="col" id="col-num-style" value="7">7</button>
+                    <button class="col" id="col-num-style" value="8">8</button>
+                    <button class="col" id="col-num-style" value="9">9</button>
                     <button class="col" value="*">x</button>
                 </div>
                 <div class="row">
-                    <button class="col">10<sup>x</sup></button>
-                    <button class="col" id="col-num-style">4</button>
-                    <button class="col" id="col-num-style">5</button>
-                    <button class="col" id="col-num-style">6</button>
+                    <button class="col" value="powerof10">10<sup>x</sup></button>
+                    <button class="col" id="col-num-style" value="4">4</button>
+                    <button class="col" id="col-num-style" value="5">5</button>
+                    <button class="col" id="col-num-style" value="6">6</button>
                     <button class="col" value="-">−</button>
                 </div>
                 <div class="row">
-                    <button class="col">log</button>
-                    <button class="col" id="col-num-style">1</button>
-                    <button class="col" id="col-num-style">2</button>
-                    <button class="col" id="col-num-style">3</button>
-                    <button class="col">+</button>
+                    <button class="col" value="log">log</button>
+                    <button class="col" id="col-num-style" value="1">1</button>
+                    <button class="col" id="col-num-style" value="2">2</button>
+                    <button class="col" id="col-num-style" value="3">3</button>
+                    <button class="col" value="+">+</button>
                 </div>
                 <div class="row">
-                    <button class="col">in</button>
-                    <button class="col" id="col-num-style">+/-</button>
-                    <button class="col" id="col-num-style">0</button>
-                    <button class="col" id="col-num-style">.</button>
-                    <button class="col" id="equals-style">=</button>
+                    <button class="col" value="ln">ln</button>
+                    <button class="col" id="col-num-style" value="+/-">+/-</button>
+                    <button class="col" id="col-num-style" value="0">0</button>
+                    <button class="col" id="col-num-style" value=".">.</button>
+                    <button class="col" id="equals-style" value="=">=</button>
                 </div>
             </div>
         </div>
     </div>
+    <script type="module" src="keybordInput.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
