@@ -331,6 +331,17 @@ degTorad.textContent = isRad ? "RAD" : "DEG"
 isRad = !isRad;
 }
 
+
+// 2nd functionality
+let is2nd = true;
+
+function secondFunctionality() {
+  square.innerHTML = is2nd ? `x<sup>3</sup>` : `x<sup>2</sup>`;
+  squareRoot.innerHTML = is2nd ? `<sup>3</sup>&Sqrt;x`: `<sup>2</sup>&Sqrt;x`
+  is2nd = !is2nd;
+}
+
+
 // dropdown functionality
 document
   .querySelector("#trigonometry-dropdown")
