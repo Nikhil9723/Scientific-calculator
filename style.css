@@ -1,0 +1,290 @@
+:root {
+    --primary-bg-color: #f4f4f4;
+    --secondary-color:#f8f9fa;
+    --dropdown-color: #c7dbee;
+    --number-color: #f8f8f8;
+    --border-box: border-box;
+    --font-weight: 600;
+    --equals-sign-color: #92c2e8;
+    --mc-mr-color: #dcdcdc;
+    --white-color: #fff;
+    --primary-font-size: 4rem;
+    --secondary-font-size: 1.2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    box-sizing: var(--border-box);
+    background-color: black;
+}
+
+.container {
+    max-width: 450px;   
+    width: 100%;
+    background-color: var(--primary-bg-color);
+}
+
+.calculator {
+    max-width: 450px;
+    /* width: 100%;s */
+    background-color: var(--primary-bg-color);
+    display: grid;
+    grid-template-rows: 150px 3.5fr;
+}
+
+.calculator__display {
+    padding: 5px;
+    max-width: 450px;
+    background-color: var(--primary-bg-color);
+    font-weight: var(--font-weight);
+    text-align: end;
+    font-size: var(--primary-font-size);
+    box-sizing: var(--border-box);
+    width: 100%;
+    /* text-wrap-mode: nowrap; */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+.calculator__input-area {
+    background-color: var(--primary-bg-color);
+    max-width: 450px;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    gap: 0.25rem;
+}
+
+.row {
+    background-color: var(--primary-bg-color);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.25rem;
+    box-sizing: border-box;
+}
+
+.row-1 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.row-1 > button {
+    font-size: var(--secondary-font-size);
+    border: none;
+    box-sizing: var(--border-box);
+    background-color: var(--primary-bg-color);
+    padding: 0.5rem;
+}
+
+
+.row-2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    
+}
+
+.row-2 > button {
+    border: none;
+    font-size: var(--secondary-font-size);
+    padding: 0.5rem;
+    box-sizing: var(--border-box);
+    background-color: var(--primary-bg-color);
+}
+
+#show-history {
+    border: 1px solid black;
+    margin-top: 3px;
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    width: 100%;
+}
+
+#hist-div {
+    position: relative;
+}
+
+#history {
+    position: absolute;
+    background-color: var(--primary-bg-color);
+    margin-top: 1px;
+    /* border:1px solid black; */
+    display: none;
+    max-width: 450px;
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    background-color: var(--primary-bg-color);
+}
+
+#history ul {
+    background-color: var(--equals-sign-color);
+    list-style-type: none;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    /* display: none; */
+}
+
+#history li {
+    margin: 5px 0;
+}
+
+/* dropdown */
+ 
+.advance-functions {
+    display: flex;
+    gap: 10px;
+    background-color: var(--primary-bg-button);
+}
+
+.dropbtn {
+    padding: 1.2rem;
+    font-size: var(--secondary-font-size);
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-bg-color);
+  }
+   
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+   
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-color);
+    min-width: 190px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+   
+  .dropdown-content button {
+    padding: 1.2rem;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    border: none;
+  }
+   
+  .dropdown-content button:hover {
+    background-color: var(--equals-sign-color);
+  }
+   
+  .show {
+    display: block;
+  }
+   
+  .functionDropbtn {
+    padding: 1.2rem;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-bg-color);
+  }
+   
+  .functions-dropdown {
+    position: relative;
+    display: inline-block;
+   
+  }
+   
+  .function-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-color);
+    min-width: 145px;
+    box-shadow:  0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+   
+  .function-dropdown-content button {
+    border: none;
+    padding: 1.2rem;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+   
+  .function-dropdown-content p:hover {
+    background-color: var(--equals-sign-color);
+  }
+   
+  .show,
+  .showFn {
+    display: block;
+  }
+
+#col-adv-opt  {
+    background-color: var(--primary-bg-color);
+    border: none;
+}
+
+#col-deg-opt > button {
+    
+    border: none;
+    font-weight: var(--font-weight);
+}
+
+.row > button {
+    border: none;
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+    font-size: var(--secondary-font-size);
+    box-sizing: var(--border-box);
+}
+
+#col-mc-style {
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
+}
+
+#col-mr-style {
+    font-weight: var(--font-weight);
+    font-size: var(--font-size);
+}
+
+#col-num-style {
+    background-color: var(--white-color);
+    font-weight: var(--font-weight);
+}
+
+#col-num-style:hover {
+    background-color: var(--equals-sign-color);
+}
+
+#equals-style {
+    background-color: var(--equals-sign-color);
+}
+
+.row-1 > button:hover {
+    background-color: var(--equals-sign-color);
+}
+
+
+#col-adv-opt > button :hover {
+    background-color: var(--equals-sign-color);
+}
+
+#equals-style:hover {
+    background-color: var(--equals-sign-color);
+}
+
+button:hover {
+    background-color: var(--equals-sign-color);
+}
+
+button {
+    cursor: pointer;
+}
