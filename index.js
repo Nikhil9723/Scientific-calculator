@@ -341,6 +341,185 @@ function secondFunctionality() {
   is2nd = !is2nd;
 }
 
+/ history manage
+
+function addToHistory(calculation) {
+  // Add the calculation to history
+  history.push(calculation);
+  // Limit the history to the last 5 calculations
+  if (history.length > 5) {
+      history.shift();  // Remove the oldest item
+  }
+  // Save the updated history to localStorage
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  // Update the history display
+  updateHistoryDisplay();
+}
+function updateHistoryDisplay() {
+  const historyList = document.getElementById('historyList');
+  historyList.innerHTML = '';
+  // Display the last 5 calculations
+  history.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      historyList.appendChild(li);
+  });
+}
+// Initialize the history display when the page loads
+window.onload = function() {
+  updateHistoryDisplay();
+}
+
+// Clear Screen 
+
+function clearScreen() {
+  calcInput.textContent = '0'
+  inputStr = '';
+  displayStr = ""
+}
+
+//remove last character
+
+export function removeLastChar() {
+  calcInput.textContent = calcInput.textContent.slice(0, -1);
+  inputStr = calcInput.textContent;
+  displayStr = calcInput.textContent;
+
+  if(!inputStr) {
+    calcInput.textContent = "0"
+  }
+}
+ 
+
+// calculate factorial
+
+function calcfactorial(num) {
+  
+  if(num === 0) {
+    return 1
+  }
+
+  return num * calcfactorial(num-1)
+}
+
+
+//calculate exponents
+
+function exponents() {
+  if(!inputStr) {
+    displayStr += "10^"
+    inputStr += "10 ** ";
+    calcInput.textContent = displayStr;
+
+  } else {
+     displayStr += " x10^";
+     inputStr += "*10 **";
+     calcInput.textContent = displayStr;
+  }
+}
+
+// calculate Absolute
+
+function calcAbsolute() {
+  displayStr += "|";
+  inputStr += "|"
+  calcInput.textContent = displayStr;
+  
+  // let newstr = inputStr;
+
+}
+
+// calculate Function exponention
+
+function toggleExponential() {
+
+  if (!inputStr || isNaN(Number(inputStr))) return;
+ 
+  let num = Number(inputStr);
+  isExponential = !isExponential;
+ 
+  if (isExponential) {
+    let exponent = num.toExponential().split("e");
+    inputStr = `${exponent[0]}*10**${Number(exponent[1])}`;
+    displayStr = `${exponent[0]}*10^${Number(exponent[1])}`;
+    calcInput.textContent = displayStr
+    isExponential = false;
+  } else {
+    inputStr = num.toString();
+    displayStr = inputStr;
+    calcInput.textContent = displayStr;
+  }
+ 
+}
+ 
+ // calculate trignometry function
+ function sinex() {
+// Math.PI
+  inputStr += !isRad ? "Math.sin(" : "Math.sin((Math.PI/180)*"
+  displayStr += "sin(";
+  // inputStr += "Math.sin("
+  calcInput.textContent = displayStr;
+ }
+ 
+ function cosex() {
+  inputStr += !isRad ? "Math.cos(" : "Math.cos((Math.PI/180)*"
+  displayStr += "cos(";
+  calcInput.textContent = displayStr;
+ }
+
+ function tanx() {
+  inputStr += !isRad ? "Math.tan(" : "Math.tan((Math.PI/180)*"
+  displayStr += "tan(";
+  calcInput.textContent = displayStr;
+ } 
+
+//Advanced function
+
+function floor() {
+  inputStr += "Math.floor("
+  displayStr += "floor("
+  calcInput.textContent = displayStr;
+}
+
+function ceil() {
+  inputStr += "Math.ceil("
+  displayStr += "ceil("
+  calcInput.textContent = displayStr;
+}
+
+// memory operations 
+
+// memory addition M+
+function memoryPlus() {
+  memory+=eval(inputStr);
+  localStorage.setItem('memoryValue',memory);
+  updatememorybutton();
+  console.log(memory);
+}
+
+// memory subtraction 
+function memorySubtraction() {
+  memory -= eval(inputStr);
+  localStorage.setItem('memoryValue', memory);
+  updatememorybutton();
+  console.log(memory);
+}
+
+//memory clear
+function memoryClear() {
+  memory=0;
+  localStorage.removeItem('memoryValue');
+  updatememorybutton();
+}
+ 
+// save display value to memory
+function memorySave() {
+  memory=eval(inputStr);
+  localStorage.setItem('memoryValue',memory);
+  updatememorybutton();
+  console.log(memory);
+}
+
 
 // dropdown functionality
 document
