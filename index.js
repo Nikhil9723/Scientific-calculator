@@ -559,6 +559,14 @@ function ceil() {
 
 // memory operations 
 
+let memory=+localStorage.getItem('memoryValue')||0;
+ 
+function updatememorybutton(){
+    let hasMemory=memory===0?false:true;
+    document.querySelector('#col-mc-style').disabled=!hasMemory;
+    document.querySelector('#col-mr-style').disabled=!hasMemory;
+}
+
 // memory addition M+
 function memoryPlus() {
   memory+=eval(inputStr);
