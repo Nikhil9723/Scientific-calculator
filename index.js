@@ -1,3 +1,16 @@
+import {
+  addToHistory,
+} from "./history.js"
+
+import {
+  memoryPlus,
+  memorySubtraction,
+  memoryClear, 
+  memorySave,
+  memoryRead
+} from "./memoryManagment.js"
+
+
 let inputStr = "";
 let displayStr = "";
 //calculator input field
@@ -5,8 +18,7 @@ const calcInput = document.getElementById("display");
 const displayValue = document.getElementById("calculator-input")
 const degTorad = document.getElementById('deg-btn');
 
-//get div for toogle the history
-const openHistory = document.getElementById("history");
+
 
 //get elemet for square and squareRoot
 const square = document.getElementById("square");
@@ -27,8 +39,10 @@ export function getInputString() {
   return inputStr;
 }
 
-export function setDisplayStr(displayStr) {
-  displayStr = displayStr;
+export function setDisplayStr(str) {
+  console.log(str);
+  
+  displayStr = str;
 }
 
 export function getDisplayStr(displayStr) {
@@ -44,6 +58,8 @@ export function addInputStr(str) {
 }
 
 export function updateDisplay() {
+  console.log(displayStr, "update");
+  
   calcInput.textContent = displayStr || 0;
 }
 
@@ -67,9 +83,8 @@ export function updateDisplay() {
       else {
         let res = calculateExpression(inputStr);
         inputStr = res;
-        console.log(res);
-       
-        
+        // displayStr = res;
+        console.log(res); 
       }
      
       break;
@@ -108,9 +123,12 @@ export function updateDisplay() {
       else {
         displayStr += "!"
       calcInput.textContent = displayStr;
-      let num = Number(inputStr.at(-1));
+      console.log(inputStr, "hiiii");
+      inputStr = inputStr.toString()
+  
+      let num = Number(inputStr);
       let result = calcfactorial(num);
-      // str.charAt(str.length - 1) = result
+
       inputStr = inputStr.slice(0, -1);
       inputStr += result;
       console.log(result);
@@ -201,7 +219,6 @@ export function updateDisplay() {
     case "M-": {
       memorySubtraction();
       break;
-      
     }
 
     case "MS": {
@@ -210,7 +227,8 @@ export function updateDisplay() {
     }
 
     case "MR":
-      calcInput.textContent=memory;
+      memoryRead();
+      
       break;
 
     case "MC":
@@ -227,34 +245,6 @@ export function updateDisplay() {
   }
 })
 
-// Key for storing history in localStorage
-const HISTORY_KEY = 'calculatorHistory';  
-
-// Retrieve history from localStorage
-let history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
-
-// is History for toogle history part
-let isHistory = false;
-
-let showHistory = document.getElementById("show-history");
-
-  showHistory.addEventListener("click", (e) => {
-  console.log("Hii");
-  isHistory = !isHistory;
-    
-  if(isHistory){
-      openHistory.style.display = "inline-block";
-      calcInput.style.display = "none"
-      // displayValue.style.display = "none"
-  }
-  else {
-      openHistory.style.display = "none";
-      calcInput.style.display = "inline-block"
-      // displayValue.style.display = "grid"
-  }
-    // let history = document.getElementById("history");
-   
-})
 
 
 
@@ -281,8 +271,6 @@ export function calculateExpression(inputStr){
         console.log(newstr);
         
         result = eval(newstr);
-        result = result.toFixed(2);
-        
 
         addToHistory(`${newstr} = ${result}`);
         inputStr = result;
@@ -320,7 +308,7 @@ function calcSquare() {
   }
   else {
     displayStr += "^2";
-    inputStr += "^2"
+    inputStr += "**2"
   }
   calcInput.textContent = displayStr;
   // calcInput.scrollTo(calcInput.offsetWidth, 0);
@@ -411,34 +399,6 @@ function secondFunctionality() {
 }
 
 
-// history manage
-
-function addToHistory(calculation) {
-  // Add the calculation to history
-  history.push(calculation);
-  // Limit the history to the last 5 calculations
-  if (history.length > 5) {
-      history.shift();  // Remove the oldest item
-  }
-  // Save the updated history to localStorage
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-  // Update the history display
-  updateHistoryDisplay();
-}
-function updateHistoryDisplay() {
-  const historyList = document.getElementById('historyList');
-  historyList.innerHTML = '';
-  // Display the last 5 calculations
-  history.forEach((item) => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      historyList.appendChild(li);
-  });
-}
-// Initialize the history display when the page loads
-window.onload = function() {
-  updateHistoryDisplay();
-}
 
 // Clear Screen 
 
@@ -556,48 +516,6 @@ function ceil() {
   displayStr += "ceil("
   calcInput.textContent = displayStr;
 }
-
-// memory operations 
-
-let memory=+localStorage.getItem('memoryValue')||0;
- 
-function updatememorybutton(){
-    let hasMemory=memory===0?false:true;
-    document.querySelector('#col-mc-style').disabled=!hasMemory;
-    document.querySelector('#col-mr-style').disabled=!hasMemory;
-}
-
-// memory addition M+
-function memoryPlus() {
-  memory+=eval(inputStr);
-  localStorage.setItem('memoryValue',memory);
-  updatememorybutton();
-  console.log(memory);
-}
-
-// memory subtraction 
-function memorySubtraction() {
-  memory -= eval(inputStr);
-  localStorage.setItem('memoryValue', memory);
-  updatememorybutton();
-  console.log(memory);
-}
-
-//memory clear
-function memoryClear() {
-  memory=0;
-  localStorage.removeItem('memoryValue');
-  updatememorybutton();
-}
- 
-// save display value to memory
-function memorySave() {
-  memory=eval(inputStr);
-  localStorage.setItem('memoryValue',memory);
-  updatememorybutton();
-  console.log(memory);
-}
-
 
 
 // dropdown functionality
