@@ -29,13 +29,13 @@ body {
 }
 
 .container {
-    max-width: 450px;   
+    max-width: 500px;   
     width: 100%;
     background-color: var(--primary-bg-color);
 }
 
 .calculator {
-    max-width: 450px;
+    max-width: 500px;
     /* width: 100%;s */
     background-color: var(--primary-bg-color);
     display: grid;
@@ -43,8 +43,8 @@ body {
 }
 
 .calculator__display {
-    padding: 5px;
-    max-width: 450px;
+    padding: 10px;
+    max-width: 500px;
     background-color: var(--primary-bg-color);
     font-weight: var(--font-weight);
     text-align: end;
@@ -59,7 +59,7 @@ body {
 
 .calculator__input-area {
     background-color: var(--primary-bg-color);
-    max-width: 450px;
+    max-width: 500px;
     width: 100%;
     display: grid;
     grid-template-rows: auto;
@@ -84,7 +84,7 @@ body {
     border: none;
     box-sizing: var(--border-box);
     background-color: var(--primary-bg-color);
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 
@@ -103,11 +103,13 @@ body {
 }
 
 #show-history {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: none;
     margin-top: 3px;
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
-    width: 100%;
+    background-color: transparent;
+    /* font-size: var(--font-size);
+    font-weight: var(--font-weight); */
+    /* width: 100%; */
 }
 
 #hist-div {
@@ -240,7 +242,7 @@ body {
 .row > button {
     border: none;
     background-color: var(--secondary-color);
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: var(--secondary-font-size);
     box-sizing: var(--border-box);
 }
