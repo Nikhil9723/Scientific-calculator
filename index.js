@@ -116,6 +116,10 @@ export function updateDisplay() {
       calcMultiplication();
       break;
 
+    case "/":
+      calcDivison();
+      break;
+
     case "factorial":
       if(!inputStr) {
         return;
@@ -296,8 +300,17 @@ export function calculateExpression(inputStr){
 // calculate Multiplication 
 function calcMultiplication() {
   displayStr += "x";
-  inputStr += "*"
-  calcInput.textContent += "x"
+  inputStr += "*";
+  calcInput.textContent += "x";
+}
+
+// calculate division
+function calcDivison() {
+  console.log("hiiii");
+  
+  displayStr += "÷";
+  inputStr += "/"
+  calcInput.textContent += "÷"
 }
 
 //calculate square of number
