@@ -25,7 +25,6 @@ export function memoryPlus() {
     memory+=eval(inputStr);
     localStorage.setItem('memoryValue',memory);
     updatememorybutton();
-    console.log(memory);
 }
 
 // memory subtraction 
@@ -34,7 +33,6 @@ export function memorySubtraction() {
     memory -= eval(inputStr);
     localStorage.setItem('memoryValue', memory);
     updatememorybutton();
-    console.log(memory);
 }
 
 // memory Read
@@ -42,11 +40,8 @@ export function memorySubtraction() {
 export function memoryRead() {
    
     let displayStr = getDisplayStr();
-    displayStr = memory;
-    console.log(memory);
-    
+    displayStr = memory;    
      setDisplayStr(displayStr);
-    // addDisplayStr(memory)
     updateDisplay()
     
 }
@@ -64,5 +59,4 @@ export function memorySave() {
     memory=eval(inputStr);
     localStorage.setItem('memoryValue',memory);
     updatememorybutton();
-    console.log(memory);
 }
