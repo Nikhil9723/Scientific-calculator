@@ -40,8 +40,6 @@ export function getInputString() {
 }
 
 export function setDisplayStr(str) {
-  console.log(str);
-  
   displayStr = str;
 }
 
@@ -57,9 +55,7 @@ export function addInputStr(str) {
   inputStr = inputStr + str;
 }
 
-export function updateDisplay() {
-  console.log(displayStr, "update");
-  
+export function updateDisplay() {  
   calcInput.textContent = displayStr || 0;
 }
 
@@ -68,7 +64,6 @@ export function updateDisplay() {
   displayValue.addEventListener("click", (e)=> {
 
   let currentKey = e.target.closest("button")?.value;
-  console.log(currentKey);
 
   if(!currentKey) {
     return
@@ -83,8 +78,6 @@ export function updateDisplay() {
       else {
         let res = calculateExpression(inputStr);
         inputStr = res;
-        // displayStr = res;
-        console.log(res); 
       }
      
       break;
@@ -127,7 +120,6 @@ export function updateDisplay() {
       else {
         displayStr += "!"
       calcInput.textContent = displayStr;
-      console.log(inputStr, "hiiii");
       inputStr = inputStr.toString()
   
       let num = Number(inputStr);
@@ -135,7 +127,6 @@ export function updateDisplay() {
 
       inputStr = inputStr.slice(0, -1);
       inputStr += result;
-      console.log(result);
       calcInput.scrollTo(calcInput.offsetWidth, 0);
       }
       
@@ -259,23 +250,17 @@ export function calculateExpression(inputStr){
         let result;
         let newstr = inputStr.replace('^','**');
         newstr = inputStr.replace("x", "*")
+
         //replace string for absolute value
         let regexmodulus=/\|(.+)\|/g;
         newstr=newstr.replace(regexmodulus,(match,num)=>{
-          console.log(num);             
           let cal=eval(num);
                if(cal<0){
                cal=-cal;
-              }
-         // console.log(cal);
-                                            
+              }                                            
           return cal;
-     });
-
-        console.log(newstr);
-        
+     });        
         result = eval(newstr);
-
         addToHistory(`${newstr} = ${result}`);
         inputStr = result;
         displayStr = result;
@@ -285,9 +270,7 @@ export function calculateExpression(inputStr){
         
       }
       catch(error) {
-        // calcInput.textContent = "Error"
         alert("Invalid Expression !")
-        // displayStr = "0";
         calcInput.textContent = "0"
         displayStr = ""
         let newstr = ""
@@ -305,9 +288,7 @@ function calcMultiplication() {
 }
 
 // calculate division
-function calcDivison() {
-  console.log("hiiii");
-  
+function calcDivison() {  
   displayStr += "÷";
   inputStr += "/"
   calcInput.textContent += "÷"
@@ -324,7 +305,6 @@ function calcSquare() {
     inputStr += "**2"
   }
   calcInput.textContent = displayStr;
-  // calcInput.scrollTo(calcInput.offsetWidth, 0);
 }
 
 //calculate inverse of number
@@ -387,7 +367,6 @@ function calcExponent() {
 function toogleSign() {
   let strMatch = inputStr.match(/(-?\d+(\.\d+)?)$/);
   if(strMatch) {
-   console.log("matched !");
    let num = Number(strMatch[1]);
    let toggle = num * -1;
    inputStr = inputStr.replace(/(-?\d+(\.\d+)?)$/, `${toggle}`);
@@ -497,10 +476,8 @@ function toggleExponential() {
  
  // calculate trignometry function
  function sinex() {
-// Math.PI
   inputStr += !isRad ? "Math.sin(" : "Math.sin((Math.PI/180)*"
   displayStr += "sin(";
-  // inputStr += "Math.sin("
   calcInput.textContent = displayStr;
  }
  
