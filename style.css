@@ -36,7 +36,6 @@ body {
 
 .calculator {
     max-width: 500px;
-    /* width: 100%;s */
     background-color: var(--primary-bg-color);
     display: grid;
     grid-template-rows: 150px 3.5fr;
@@ -51,7 +50,6 @@ body {
     font-size: var(--primary-font-size);
     box-sizing: var(--border-box);
     width: 100%;
-    /* text-wrap-mode: nowrap; */
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
@@ -103,13 +101,9 @@ body {
 }
 
 #show-history {
-    /* border: 1px solid black; */
     border: none;
     margin-top: 3px;
     background-color: transparent;
-    /* font-size: var(--font-size);
-    font-weight: var(--font-weight); */
-    /* width: 100%; */
 }
 
 #hist-div {
@@ -120,7 +114,6 @@ body {
     position: absolute;
     background-color: var(--primary-bg-color);
     margin-top: 1px;
-    /* border:1px solid black; */
     display: none;
     max-width: 450px;
     width: 100%;
@@ -135,7 +128,6 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    /* display: none; */
 }
 
 #history li {
