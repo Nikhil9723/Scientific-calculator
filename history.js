@@ -13,13 +13,11 @@ let isHistory = false;
 let showHistory = document.getElementById("show-history");
 
   showHistory.addEventListener("click", (e) => {
-  console.log("Hii");
   isHistory = !isHistory;
     
   if(isHistory){
       openHistory.style.display = "inline-block";
       calcInput.style.display = "none"
-      // displayValue.style.display = "none"
   }
   else {
       openHistory.style.display = "none";
