@@ -10,19 +10,22 @@ import {
   memoryRead
 } from "./memoryManagment.js"
 
+import {BUTTON_TYPES, ELEMENT_IDS} from "./constants.js"
+
+
 
 let inputStr = "";
 let displayStr = "";
 //calculator input field
 const calcInput = document.getElementById("display");
 const displayValue = document.getElementById("calculator-input")
-const degTorad = document.getElementById('deg-btn');
+const degTorad = document.getElementById(ELEMENT_IDS.DEG_BTN);
 
 
 
 //get elemet for square and squareRoot
-const square = document.getElementById("square");
-const squareRoot = document.getElementById("squareRoot");
+const square = document.getElementById(ELEMENT_IDS.SQUARE);
+const squareRoot = document.getElementById(ELEMENT_IDS.SQUARE_ROOT);
 
 
 
@@ -70,7 +73,7 @@ export function updateDisplay() {
   }
   switch(currentKey) {
     
-    case "=":
+    case BUTTON_TYPES.EQUAL:
   
       if(!inputStr) {
         calcInput.textContent = 0;
@@ -82,38 +85,38 @@ export function updateDisplay() {
      
       break;
 
-    case "F-E":
+    case BUTTON_TYPES.FUNCTION_EXPONENTIAL:
       toggleExponential()
       break;
 
-    case "DEG":
+    case BUTTON_TYPES.DEG :
       degToRad()
       e.target.value = "RAD"
       // degToRad()
       break;
 
-    case "RAD":
+    case BUTTON_TYPES.RAD :
       degToRad()
       e.target.value = "DEG"
       // degToRad()
       break
-    case "C":
+    case BUTTON_TYPES.CLEAR_SCREEN:
      clearScreen();
      break;
 
-    case "backspace":
+    case BUTTON_TYPES.BACKSPACE:
       removeLastChar();
       break;
 
-    case "*":
+    case BUTTON_TYPES.MULTIPLICATION:
       calcMultiplication();
       break;
 
-    case "/":
+    case BUTTON_TYPES.DIVIDE:
       calcDivison();
       break;
 
-    case "factorial":
+    case BUTTON_TYPES.FACTORIAL:
       if(!inputStr) {
         return;
       }
@@ -132,101 +135,101 @@ export function updateDisplay() {
       
       break;
     
-    case "square":
+    case BUTTON_TYPES.SQUARE:
       calcSquare();
       break;
 
-    case "2nd":
+    case BUTTON_TYPES.SECOND_FUNCTIONALITY:
       secondFunctionality()
       break;
 
-    case "powerof10":
+    case BUTTON_TYPES.POWER_OF_10:
       displayStr += "10^"
       calcInput.textContent = displayStr;
       inputStr += "10 **"
       break;
       
-    case "1/":
+    case BUTTON_TYPES.INVERSE:
       calcInverse();
       break;
 
-      case "absolute-value":
+      case BUTTON_TYPES.ABSOLUTE_VALUE:
          calcAbsolute();
         break;
 
-      case "exp":
+      case BUTTON_TYPES.EXPONENET:
         exponents();
         break;
 
-      case "power":
+      case BUTTON_TYPES.POWER:
        calcPower();
        break;
 
-      case "squareRoot":
+      case BUTTON_TYPES.SQUARE_ROOT:
         calcSquareRoot()
         break;
 
-      case "log":
+      case BUTTON_TYPES.LOG:
         calcLogaritham();
         break;
 
-      case "ln":
+      case BUTTON_TYPES.LN:
         calcLn()
         break;
 
-      case "e":
+      case BUTTON_TYPES.E:
         calcExponent()
         break;
 
-      case "+/-":
+      case BUTTON_TYPES.PLUSH_MINUS:
         toogleSign()
         break;
 
     //Trignometry function
       
-    case "sin":
+    case BUTTON_TYPES.SINEX:
       sinex();
       break;
 
-    case "cos":
+    case BUTTON_TYPES.COSEX:
       cosex();
       break;
 
-    case "tan":
+    case BUTTON_TYPES.TANEX:
       tanx();
       break;
 
     //Advance function
 
-    case "floor":
+    case BUTTON_TYPES.FLOOR:
       floor();
       break;
 
-    case "ceil":
+    case BUTTON_TYPES.CEIL:
       ceil();
       break;
 
-    case 'M+':{
+    case BUTTON_TYPES.MEMORY_PLUSH:{
       memoryPlus()
       break;
     }
 
-    case "M-": {
+    case BUTTON_TYPES.MEMORY_MINUS: {
       memorySubtraction();
       break;
     }
 
-    case "MS": {
+    case BUTTON_TYPES.MEMORY_SAVE: {
       memorySave()
       break;
     }
 
-    case "MR":
+    case BUTTON_TYPES.MEMORY_READ:
       memoryRead();
       
       break;
 
-    case "MC":
+    case BUTTON_TYPES.MEMORY_CLEAR:
       memoryClear()
       break;
 
@@ -297,12 +300,10 @@ function calcDivison() {
 //calculate square of number
 function calcSquare() {
   if(!is2nd) {
-    displayStr += "^3";
-    inputStr += "**3"
+    updateCalculationString("^3", "**3")
   }
   else {
-    displayStr += "^2";
-    inputStr += "**2"
+    updateCalculationString("^2", "**2")
   }
   calcInput.textContent = displayStr;
 }
@@ -330,9 +331,11 @@ function calcSquareRoot() {
   if(!is2nd) {
     displayStr += "√("
     inputStr += "Math.cbrt("
+    updateCalculationString("√(", "Math.cbrt(")
   } else {
      displayStr += "√("
-     inputStr += "Math.sqrt("
+     inputStr += "Math.sqrt(";
+     updateCalculationString("√(", "Math.sqrt(")
   }
   calcInput.textContent = displayStr;
   calcInput.scrollTo(calcInput.offsetWidth, 0);
@@ -354,13 +357,14 @@ function calcLn() {
 
 //calclate exponenet of number 
 function calcExponent() {
-  displayStr += "e";
+  // displayStr += "e";
     if(!inputStr) {
-    inputStr += "Math.E";
+      updateCalculationString("e", "Math.E");
     } else {
-      inputStr+= "*Math.E";
+      updateCalculationString("e", "*Math.E")
     }
   calcInput.textContent = displayStr
+ 
 }
 
 //toogle sign for output or input between + or -
@@ -473,40 +477,55 @@ function toggleExponential() {
   }
  
 }
- 
+
  // calculate trignometry function
  function sinex() {
-  inputStr += !isRad ? "Math.sin(" : "Math.sin((Math.PI/180)*"
-  displayStr += "sin(";
-  calcInput.textContent = displayStr;
+  if(!isRad) {
+    updateCalculationString("sin(", "Math.sin(");
+  }
+  else {
+    updateCalculationString("sin(",  "Math.sin((Math.PI/180)*");
+  }  
  }
  
  function cosex() {
-  inputStr += !isRad ? "Math.cos(" : "Math.cos((Math.PI/180)*"
-  displayStr += "cos(";
-  calcInput.textContent = displayStr;
+  if(!isRad) {
+    updateCalculationString("cos(",  "Math.cos(");
+  }
+  else {
+    updateCalculationString("cos(",  "Math.cos((Math.PI/180)*");
+  }
  }
 
  function tanx() {
-  inputStr += !isRad ? "Math.tan(" : "Math.tan((Math.PI/180)*"
-  displayStr += "tan(";
-  calcInput.textContent = displayStr;
+  if(!isRad) {
+    updateCalculationString("tan(", "Math.tan(")
+  }
+  else {
+    updateCalculationString("tan(", "Math.tan((Math.PI/180)*")
+  }
  } 
 
 //Advanced function
 
 function floor() {
-  inputStr += "Math.floor("
-  displayStr += "floor("
-  calcInput.textContent = displayStr;
+  updateCalculationString("floor(", "Math.floor(");
 }
 
 function ceil() {
-  inputStr += "Math.ceil("
-  displayStr += "ceil("
-  calcInput.textContent = displayStr;
+  updateCalculationString("ceil(", "Math.ceil(");
 }
 
+
+// utility function to update the string for some scientific and exponent
+
+function updateCalculationString(displayAddition, inputAddition) {
+  displayStr += displayAddition;
+  inputStr+= inputAddition;
+  calcInput.textContent = displayStr;
+  calcInput.scrollTo(calcInput.offsetWidth, 0);
+}
+ 
 
 // dropdown functionality
 document
