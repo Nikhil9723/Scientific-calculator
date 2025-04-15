@@ -10,6 +10,8 @@ let history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
 // is History for toogle history part
 let isHistory = false;
 
+let calculator = document.querySelector(".calculator");
+
 let showHistory = document.getElementById("show-history");
 
   showHistory.addEventListener("click", (e) => {
@@ -17,11 +19,11 @@ let showHistory = document.getElementById("show-history");
     
   if(isHistory){
       openHistory.style.display = "inline-block";
-      calcInput.style.display = "none"
+      calculator.style.display = "none";
   }
   else {
       openHistory.style.display = "none";
-      calcInput.style.display = "inline-block"
+      calculator.style.display = "grid"
   }
    
 })
