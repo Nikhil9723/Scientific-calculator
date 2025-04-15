@@ -29,7 +29,7 @@ body {
 }
 
 .container {
-    max-width: 500px;   
+    max-width: 450px;   
     width: 100%;
     background-color: var(--primary-bg-color);
 }
@@ -114,28 +114,27 @@ body {
     background-color: transparent;
 }
 
-#hist-div {
-    position: relative;
-}
-
 #history {
-    position: absolute;
+    /* position: absolute; */
     background-color: var(--primary-bg-color);
     margin-top: 1px;
     display: none;
-    /* max-width: 450px; */
-    /* width: 100%; */
-    height: 150px;
+    max-width: 450px;
+    width: 100%;
+    height: 45rem;
     text-align: center;
     background-color: var(--primary-bg-color);
 }
 
 #history ul {
-    background-color: var(--equals-sign-color);
+    background-color: var(--primary-bg-color);
     list-style-type: none;
     padding: 0;
     height: 100%;
     width: 100%;
+    font-size: 2rem;
+    padding: 3rem;
+    box-sizing: border-box;
 }
 
 #history li {
