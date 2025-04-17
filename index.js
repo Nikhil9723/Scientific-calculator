@@ -329,12 +329,8 @@ function calcPower() {
 //calculate square root of number
 function calcSquareRoot() {
   if(!is2nd) {
-    displayStr += "√("
-    inputStr += "Math.cbrt("
     updateCalculationString("√(", "Math.cbrt(")
   } else {
-     displayStr += "√("
-     inputStr += "Math.sqrt(";
      updateCalculationString("√(", "Math.sqrt(")
   }
   calcInput.textContent = displayStr;
@@ -343,28 +339,21 @@ function calcSquareRoot() {
 
 //calclate logaritham
 function calcLogaritham() {
-  displayStr += "log("
-  inputStr += "Math.log10("
-  calcInput.textContent = displayStr;
+  updateCalculationString("log(", "Math.log10(")
 }
 
 //calculate Ln for number
 function calcLn() {
-  displayStr += "ln(";
-  inputStr += "Math.log(";
-  calcInput.textContent = displayStr;
+  updateCalculationString("ln(", "Math.log(")
 }
 
 //calclate exponenet of number 
 function calcExponent() {
-  // displayStr += "e";
     if(!inputStr) {
       updateCalculationString("e", "Math.E");
     } else {
       updateCalculationString("e", "*Math.E")
-    }
-  calcInput.textContent = displayStr
- 
+    } 
 }
 
 //toogle sign for output or input between + or -
@@ -433,26 +422,16 @@ function calcfactorial(num) {
 
 function exponents() {
   if(!inputStr) {
-    displayStr += "10^"
-    inputStr += "10 ** ";
-    calcInput.textContent = displayStr;
-
+    updateCalculationString("10^", "10 ** ")
   } else {
-     displayStr += " x10^";
-     inputStr += "*10 **";
-     calcInput.textContent = displayStr;
+     updateCalculationString(" x10^", "*10 **")
   }
 }
 
 // calculate Absolute
 
 function calcAbsolute() {
-  displayStr += "|";
-  inputStr += "|"
-  calcInput.textContent = displayStr;
-  
-  // let newstr = inputStr;
-
+  updateCalculationString("|",  "|");
 }
 
 // calculate Function exponention
