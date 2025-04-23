@@ -35,32 +35,38 @@ body {
 }
 
 .calculator {
-    max-width: 450px;
-    /* width: 100%;s */
+    /* max-width: 500px; */
     background-color: var(--primary-bg-color);
     display: grid;
     grid-template-rows: 150px 3.5fr;
 }
 
+.calc-input-scroll {
+    background-color: var(--primary-bg-color);
+    box-sizing: var(--border-box);
+    /* width: 100%; */
+    max-width: 500px;
+    width: 100%;
+    overflow-x:auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
 .calculator__display {
-    padding: 5px;
-    max-width: 450px;
+    padding: 10px;
+    /* max-width: 500px; */
     background-color: var(--primary-bg-color);
     font-weight: var(--font-weight);
     text-align: end;
     font-size: var(--primary-font-size);
     box-sizing: var(--border-box);
-    width: 100%;
-    /* text-wrap-mode: nowrap; */
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
+   
 }
 
 .calculator__input-area {
     background-color: var(--primary-bg-color);
-    max-width: 450px;
-    width: 100%;
+    /* max-width: 500px; */
+    /* width: 100%; */
     display: grid;
     grid-template-rows: auto;
     gap: 0.25rem;
@@ -84,7 +90,7 @@ body {
     border: none;
     box-sizing: var(--border-box);
     background-color: var(--primary-bg-color);
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 
@@ -103,37 +109,32 @@ body {
 }
 
 #show-history {
-    border: 1px solid black;
+    border: none;
     margin-top: 3px;
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
-    width: 100%;
-}
-
-#hist-div {
-    position: relative;
+    background-color: transparent;
 }
 
 #history {
-    position: absolute;
+    /* position: absolute; */
     background-color: var(--primary-bg-color);
     margin-top: 1px;
-    /* border:1px solid black; */
     display: none;
     max-width: 450px;
     width: 100%;
-    height: 150px;
+    height: 45rem;
     text-align: center;
     background-color: var(--primary-bg-color);
 }
 
 #history ul {
-    background-color: var(--equals-sign-color);
+    background-color: var(--primary-bg-color);
     list-style-type: none;
     padding: 0;
     height: 100%;
     width: 100%;
-    /* display: none; */
+    font-size: 2rem;
+    padding: 3rem;
+    box-sizing: border-box;
 }
 
 #history li {
@@ -240,7 +241,7 @@ body {
 .row > button {
     border: none;
     background-color: var(--secondary-color);
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: var(--secondary-font-size);
     box-sizing: var(--border-box);
 }
